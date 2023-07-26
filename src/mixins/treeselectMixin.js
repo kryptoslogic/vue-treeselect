@@ -993,7 +993,8 @@ export default {
         raw,
       }
 
-      return this.$set(this.forest.nodeMap, id, fallbackNode)
+      this.$set(this.forest.nodeMap, id, fallbackNode)
+      return this.forest.nodeMap[id]
     },
 
     extractCheckedNodeIdsFromValue() {
@@ -1536,7 +1537,9 @@ export default {
             ? lowerCased.label
             : parentNode.nestedSearchLabel + ' ' + lowerCased.label
 
-          const normalized = this.$set(this.forest.nodeMap, id, createMap())
+          this.$set(this.forest.nodeMap, id, createMap())
+          const normalized = this.forest.nodeMap[id]
+
           this.$set(normalized, 'id', id)
           this.$set(normalized, 'label', label)
           this.$set(normalized, 'level', level)
